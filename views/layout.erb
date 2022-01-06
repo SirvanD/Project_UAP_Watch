@@ -18,8 +18,10 @@
 
 <!-- sidebar starts -->
     <div class="sidebar">
-      <i class="fab fa-twitter"></i>
+    <img src="/stylesheets/images/UAP_logo.png" alt="">
+      
       <div class="sidebarOption active">
+      
         <span class="material-icons"> home </span>
         <h2>Home</h2>
       </div>
@@ -40,7 +42,9 @@
       </div> %>
 
       <div class="sidebarOption">
+      
         <span class="material-icons"> bookmark_border </span>
+        
         <h2>My Posts</h2>
       </div>
 
@@ -58,7 +62,7 @@
         <span class="material-icons"> more_horiz </span>
         <h2>More</h2>
       </div> %>
-      <button class="sidebar__tweet">Tweet</button>
+      <button class="sidebar__tweet">Post</button>
     </div>
     <!-- sidebar ends -->
 
@@ -67,7 +71,9 @@
       <div class="feed__header">
         <h2>Unidentified Aerial Phenomena (UAP Watch)</h2>
       </div>
-
+      
+      
+      <%= yield %>
 
 
       <!-- tweetbox starts -->
@@ -89,77 +95,7 @@
 
 
 
-      <!-- post starts -->
-      <div class="post">
-        <div class="post__avatar">
-          <img
-            src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-            alt=""
-          />
-        </div>
-
-        <div class="post__body">
-          <div class="post__header">
-            <div class="post__headerText">
-              <h3>
-                Somanath Goudar
-                <span class="post__headerSpecial"
-                  ><span class="material-icons post__badge"> verified </span>@somanathg</span
-                >
-              </h3>
-            </div>
-            <div class="post__headerDescription">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-          <img
-            src="https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg"
-            alt=""
-          />
-          <div class="post__footer">
-            <span class="material-icons"> repeat </span>
-            <span class="material-icons"> favorite_border </span>
-            <span class="material-icons"> publish </span>
-          </div>
-        </div>
-      </div>
-      <!-- post ends -->
-
-      <!-- post starts -->
-      <div class="post">
-        <div class="post__avatar">
-          <img
-            src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-            alt=""
-          />
-        </div>
-
-        <div class="post__body">
-          <div class="post__header">
-            <div class="post__headerText">
-              <h3>
-                Somanath Goudar
-                <span class="post__headerSpecial"
-                  ><span class="material-icons post__badge"> verified </span>@somanathg</span
-                >
-              </h3>
-            </div>
-            <div class="post__headerDescription">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-          <img
-            src="https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg"
-            alt=""
-          />
-          <div class="post__footer">
-            <span class="material-icons"> repeat </span>
-            <span class="material-icons"> favorite_border </span>
-            <span class="material-icons"> publish </span>
-          </div>
-        </div>
-      </div>
-      <!-- post ends -->
+      
     </div>
     <!-- feed ends -->
 
@@ -215,7 +151,7 @@
     </div>
     <!-- widgets ends -->
 
-  <%= yield %>
+  
 
 </body>
 </html>
