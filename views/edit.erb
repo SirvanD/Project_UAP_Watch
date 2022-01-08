@@ -1,0 +1,55 @@
+<div class="post">
+    <div class="post__avatar">
+        <img
+        src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
+        alt=""
+        />
+    </div>
+
+    <div class="post__body">
+        <div class="post__header">
+        <div class="post__headerText">
+            <h3>
+            Somanath Goudar
+            <span class="post__headerSpecial"
+                ><span class="material-icons post__badge"> verified </span>@somanathg</span
+            >
+            </h3>
+        </div>
+        <div class="post__headerDescription">
+            <p> Caption: <%= image['name'] %> </p>
+            <p> Location: <%= image['location'] %> </p>
+            <p> Date:<%= image['date'] %> </p>
+            <p> Description: <%= image['description'] %> </p>
+        </div>
+        </div>
+        <img
+        src=" <%= image['image_url'] %>"
+        alt="<%= image['name'] %>"
+        />
+        <div class="post__footer">
+        
+        <form action="/images/<%= image['id'] %>" method="post">
+        <input type="hidden" name="_method" value="put">
+
+        <label for="">name: </label>
+        <input name="name" type="text" value="<%= image['name'] %>">
+        <label for="">location: </label>
+        <input name="location" type="text" value="<%= image['location'] %>">
+        <label for="">date: </label>
+        <input name="date" type="text" value="<%= image['date'] %>">
+        <label for="">description: </label>
+        <input name="description" type="text" value="<%= image['description'] %>">
+
+        <button> Update Post</button>       
+                
+        </form>
+        
+
+        <form action="/images/<%= image['id'] %>" method="post">
+        <input type="hidden" name="_method" value="delete"> 
+        <button>Delete</button>          
+        </form>
+        </div>
+    </div>
+</div>

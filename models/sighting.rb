@@ -17,11 +17,11 @@ def all_images()
 end
 
 
-def post_image(name, location, date, description, image_url,user_id)
+def post_image(name, location, date, description, image_url,user_id,profile_url,user_name,user_email)
 
-    sql = "INSERT INTO images(name,location,date,description,image_url,user_id) VALUES($1,$2,$3,$4,$5,$6)  ;"
+    sql = "INSERT INTO images(name,location,date,description,image_url,user_id,profile_url,user_name,user_email) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9);"
 
-    db_query(sql, [name,location,date,description,image_url,user_id])
+    db_query(sql, [name,location,date,description,image_url,user_id,profile_url,user_name,user_email])
 
 end
 
@@ -29,6 +29,14 @@ end
 def delete_image(id)
 
     db_query("DELETE FROM images WHERE id = $1;", [id])
+
+end
+
+
+def update_image(name, location, date, description,id)
+
+    sql = "UPDATE images SET name = $1, location = $2, date = $3, description = $4 WHERE id = $5;"
+    db_query(sql, [name,location,date,description,id])
 
 
 end
