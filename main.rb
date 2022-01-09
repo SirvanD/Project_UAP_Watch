@@ -4,6 +4,9 @@ require 'pg'
 require 'pry'
 require 'bcrypt'
 require 'cloudinary'
+require 'nasa_apod'
+require 'nasa_api'
+
 
 require_relative 'models/sighting.rb'
 require_relative 'models/user.rb'
@@ -13,24 +16,21 @@ require_relative 'controllers/user_controller.rb'
 
 enable :sessions
 
-
-
-
+planetary_client = NasaApi::Planetary.new(api_key: 'XjOIwythRDsPhMlGqVWqPbIb0IQFldVZBE9hTBtq')
+apod_today = planetary_client.apod()
+nasa= apod_today
 
 get '/' do
   users = all_users()
   result = all_images()
+  
+  
   # binding.pry
 
-  # def get_profile_url()
-  #   result.to_a.each do |image|
-  #     if image['user_id'] == users
-  #     image['profile_url'] = users
-
-  # end
   erb(:index, locals: {
     images: result,
-    users: users
+    users: users,
+    nasa: apod_today 
   })
   
 end
@@ -49,6 +49,10 @@ end
   api_secret: ENV['CLOUDINARY_API_SECRET']
 }
 
+# NASA API
+
+
+
 
  post '/images' do 
 
@@ -63,13 +67,16 @@ post_image(params["name"],params["location"],params["date"],params["description"
 
 
 get '/login' do
-  erb :login
+  erb(:login, locals:{
+    nasa: apod_today
+  })
 end
 
 get '/images' do
   result = all_images()
 erb(:posts, locals: {
-  images: result
+  images: result,
+  nasa: apod_today
 })
 end
 
@@ -88,11 +95,10 @@ get '/images/:id/edit' do
   image = db_query(sql, [params['id']]).first
 
 erb(:edit, locals:{
-image: image
+image: image,
+nasa: apod_today
 })
 end
-
-
 
 put '/images/:id' do
 
@@ -110,7 +116,9 @@ end
 
 get '/signup' do
 
-erb(:signup)
+erb(:signup, locals:{
+  nasa: apod_today
+})
 end
 
 
@@ -125,6 +133,37 @@ post '/user' do
 
 redirect '/login'
 end
+
+
+get '/user/:id/edit' do
+
+  redirect '/login' unless logged_in?
+  sql = "SELECT * FROM users WHERE id = $1;"
+  user = db_query(sql, [params['id']]).first
+  
+  erb(:profile, locals:{
+    user: user,
+    nasa: apod_today
+  })
+end
+
+
+put '/user' do
+  file = params['profile_url']['tempfile']
+  profile_uploaded = Cloudinary::Uploader.upload(file,options)
+  # result['url'] is my url here
+  result = profile_uploaded['url']
+
+  update_user(
+    params['name'],
+    params['email'],
+    result,
+    current_user.id
+  )
+
+redirect '/images'
+end
+
 
 
 post '/session' do

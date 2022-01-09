@@ -1,33 +1,44 @@
 <div class="post">
     <div class="post__avatar">
-        <img
-        src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-        alt=""
-        />
+        <% if image['profile_url'] != nil %>
+      <img src="<%= image['profile_url'] %>" alt=""/>
+      <% else %>        
+ 
+    <img src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png" alt=""/>
+      
+    <% end %> 
     </div>
 
     <div class="post__body">
         <div class="post__header">
         <div class="post__headerText">
             <h3>
-            Somanath Goudar
+            <% if image['user_name'] != nil %>
+          <%= image['user_name'] %>
+          <% else %>
+          Sirvan Doukchi
+          <% end %>
             <span class="post__headerSpecial"
-                ><span class="material-icons post__badge"> verified </span>@somanathg</span
-            >
+              ><span class="material-icons post__badge"> verified </span>
+              <% if image['user_email'] != nil %>
+              <%= image['user_email'] %>
+              <% else %>
+              @anonymous
+              <% end %>
             </h3>
         </div>
         <div class="post__headerDescription">
-            <p> Caption: <%= image['name'] %> </p>
-            <p> Location: <%= image['location'] %> </p>
-            <p> Date:<%= image['date'] %> </p>
-            <p> Description: <%= image['description'] %> </p>
+            <p class="post_caption"> Caption: <%= image['name'] %> </p>
+            <p class="post_caption"> Location: <%= image['location'] %> </p>
+            <p class="post_caption"> Date:<%= image['date'] %> </p>
+            <p class="post_caption"> Description: <%= image['description'] %> </p>
         </div>
         </div>
         <img
         src=" <%= image['image_url'] %>"
         alt="<%= image['name'] %>"
         />
-        <div class="post__footer">
+        
         
         <form action="/images/<%= image['id'] %>" method="post">
         <input type="hidden" name="_method" value="put">
@@ -50,6 +61,6 @@
         <input type="hidden" name="_method" value="delete"> 
         <button>Delete</button>          
         </form>
-        </div>
+        
     </div>
 </div>

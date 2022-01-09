@@ -15,10 +15,11 @@
     />
 </head>
 <body>
+ 
 
 <!-- sidebar starts -->
     <div class="sidebar">
-    <img src="/stylesheets/images/UAP_logo.png" alt="">
+    <img class="logo" src="/stylesheets/images/SW_logo8.png" alt="">
       
       <div class="sidebarOption active">
       
@@ -55,8 +56,12 @@
 
       <div class="sidebarOption">
         <span class="material-icons"> perm_identity </span>
-        <h2>Profile</h2>
-        
+        <h2>
+        <% if logged_in? %>
+        <a href="/user/<%= current_user.id %>/edit">Profile</a></h2>
+        <% else %>
+        <a href="/login">Profile</a></h2>
+        <% end %>
       </div>
 
       <%# <div class="sidebarOption">
@@ -70,14 +75,11 @@
     <!-- feed starts -->
     <div class="feed">
       <div class="feed__header">
-        <h2>Unidentified Aerial Phenomena (UAP Watch)</h2>
+        <%# <h2>Unidentified Aerial Phenomena (UAP Watch)</h2> %>
       </div>
       
       
-      <%= yield %>
-
-
-      
+      <%= yield %>   
 
 
 
@@ -88,67 +90,59 @@
     <!-- feed ends -->
 
     <!-- widgets starts -->
-    <div class="widgets">
+        <div class="widgets">
 
-<div class="user_buttons">
+        <div class="user_buttons">
 
-<% if logged_in? %>
+        <% if logged_in? %>
 
-<p>logged in as <%= current_user.email %></p> 
+        <p class="welcome_message">Welcome <%= current_user.name %></p> 
 
-<form action="/session" method="post">
-  <input type="hidden" name="_method" value="delete" >
-  <button>logout</button>
-</form>
+        <form action="/session" method="post">
+          <input type="hidden" name="_method" value="delete" >
+          <button class="tweetBox__tweetButton">Logout</button>
+        </form>
 
-<% else %>
-<form action="/login">
-  <button>login</button>
-</form>
+        <% else %>
+        <div>
+        <form action="/login">
+        <button class="tweetBox__tweetButton">Login</button>
+        </form>
+        </div>
+        <div>
+        <form action="/signup">
+          <button class="tweetBox__tweetButton">Sign up</button>
+        </form>
+        </div>
 
-<form action="/signup">
-  <button>Sign Up</button>
-</form>
-
-<% end %>  
+        <% end %>  
+          
+        </div>
   
-</div>
-  
-
-
-
-
-
-
-<%# //codes from twitter right pane %>
-      <%# <div class="widgets__input">
-        <span class="material-icons widgets__searchIcon"> search </span>
-        <input type="text" placeholder="Search Twitter" />
-      </div> %>
-      
-
-      <%# <div class="widgets__widgetContainer">
-        <h2>What's happening?</h2>
+ 
+        <div class="widgets__widgetContainer">
+        
+        
         <blockquote class="twitter-tweet">
-          <p lang="en" dir="ltr">
-            Sunsets don&#39;t get much better than this one over
-            <a href="https://twitter.com/GrandTetonNPS?ref_src=twsrc%5Etfw">@GrandTetonNPS</a>.
-            <a href="https://twitter.com/hashtag/nature?src=hash&amp;ref_src=twsrc%5Etfw"
-              >#nature</a
-            >
-            <a href="https://twitter.com/hashtag/sunset?src=hash&amp;ref_src=twsrc%5Etfw"
-              >#sunset</a
-            >
-            <a href="http://t.co/YuKy2rcjyU">pic.twitter.com/YuKy2rcjyU</a>
-          </p>
-          &mdash; US Department of the Interior (@Interior)
-          <a href="https://twitter.com/Interior/status/463440424141459456?ref_src=twsrc%5Etfw"
-            >May 5, 2014</a
-          >
+
+        <div class="nasa_widget">
+        
+        <div class="nasa_title">
+        <p> <img class="nasa_logo" src="/stylesheets/images/nasa.png" alt=""> </p>
+        </div>
+        <div class="nasa_name"><p><%= nasa.title %></p></div>
+        
+        <div class="autoShowHide"><%= nasa.explanation %></div>             
+        
+        <div><img class="nasa_image" src="<%= nasa.url %>" alt=""></div>
+
+        </div>          
+          
         </blockquote>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div> %>
-    </div>
+        
+        </div>
+        </div> 
+    
     <!-- widgets ends -->
 
   

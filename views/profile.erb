@@ -1,0 +1,26 @@
+<div class="tweetBox">
+        <form action="/user" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="put">
+          <div class="tweetbox__input">
+            <img class="user-profile"
+              src="<%= user['profile_url'] %>"
+              alt=""
+            />
+          
+            <label for="">Profile image: </label>
+            <input  name="profile_url" type="file"/>
+              <label for="">name: </label> 
+            <input name="name" type="text" value="<%= user['name'] %>"/>
+              <label for="">email: </label> 
+            <input name="email" type="text" value="<%= user['email'] %>"/>
+            <button class="tweetBox__tweetButton">Update</button>
+                        
+        </div>
+
+        
+
+
+
+          
+        </form>
+      </div>

@@ -40,3 +40,10 @@ def update_image(name, location, date, description,id)
 
 
 end
+
+def update_image_profile(name,email,profile_url,user_id)
+
+sql = "UPDATE images SET user_name = $1, user_email = $2, profile_url = $3 WHERE user_id = $4;"
+db_query(sql,[name,email,profile_url,user_id])
+
+end

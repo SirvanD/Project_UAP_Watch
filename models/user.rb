@@ -17,16 +17,6 @@ end
 
 
 
-# def db_query_users(sql, params = [])
-
-#     conn = PG.connect(dbname: 'users')
-#     result = conn.exec_params(sql,params)
-#     conn.close
-#     return result
-
-# end
-
-
 
 def all_users()
 
@@ -46,5 +36,13 @@ def create_user(name,email,password,profile_url)
 
     conn.exec(sql)
     conn.close
+
+end
+
+
+def update_user(name,email,profile_url,id)
+    sql = "UPDATE users SET name = $1, email = $2, profile_url = $3 WHERE id = $4;"
+    db_query(sql, [name,email,profile_url,id])
+    update_image_profile(name,email,profile_url,id)
 
 end

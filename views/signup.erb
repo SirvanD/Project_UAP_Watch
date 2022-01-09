@@ -2,19 +2,22 @@
 <div class="tweetBox">
 <form action="/user" method="post" enctype="multipart/form-data">
     <div class="tweetbox__input">
-    <img
+    
+    <img class="user-profile"
         src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
         alt=""
     />
     
+    
+    
     <label for="">Name: </label>
     <input name="name" type="text" 
-    placeholder=""/>
+    placeholder="Your full name"/>
     <label for="">Email: </label>
     <input name="email" type="text" 
-    placeholder=""/>
+    placeholder="example@example.com"/>
     <label for="">Password: </label>
-    <input name="password" type="password" placeholder=""/>
+    <input name="password" type="password" placeholder="Select a password"/>
     <label for="">Profile image: </label>
     <input name="image_url" type="file"/>
     <button class="tweetBox__tweetButton">Sign up</button>      

@@ -1,19 +1,25 @@
 
-
 <div class="tweetBox">
-    <form action="/session" method="post">
-        <div class="tweetbox__input">
-        
-        
-        <label for="">Email: </label>
-        <input name="email" type="text" 
-        placeholder=""/>
-        <label for="">Password: </label>
-        <input name="password" type="password" placeholder=""/>
+<form action="/session" method="post">
+<div class="tweetbox__input">
 
-        
-              <button class="tweetBox__tweetButton">Login</button>      
+
+<div class="container">
+  <%# <div class="user-profile"></div>
+  <div class="brand-title">UAP Watch</div> %>
+  <h3>Please login or create an account</h3>
+  <div class="inputs">
+    <label>EMAIL</label>
+    <input name="email" type="email" placeholder="example@example.com" />
+    <label>PASSWORD</label>
+    <input name="password" type="password" placeholder="Your password" />
+    <button type="submit">LOGIN</button>
     </div>
         
     </form>
+  </div>
+ </div>
 </div>
+ 
+
+
