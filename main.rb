@@ -39,7 +39,10 @@ end
  get '/images/new' do
   redirect '/login' unless logged_in?
 
-  erb(:new)
+ 
+  erb(:new, locals:{
+    nasa: apod_today
+  })
  end
 
 # Cloudinary API for storing images
@@ -60,7 +63,13 @@ end
   image_uploaded = Cloudinary::Uploader.upload(file,options)
   # result['url'] is my url here
   result = image_uploaded['url']
-post_image(params["name"],params["location"],params["date"],params["description"],result,current_user.id,current_user.profile_url,current_user.name,current_user.email)
+  
+  utc_time = Time.new
+  local_time = utc_time.getlocal
+   
+ 
+
+post_image(params["name"],params["location"],params["date"],params["description"],result,current_user.id,current_user.profile_url,current_user.name,current_user.email,local_time)
 
   redirect '/'
  end
@@ -71,6 +80,8 @@ get '/login' do
     nasa: apod_today
   })
 end
+
+
 
 get '/images' do
   result = all_images()

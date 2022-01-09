@@ -12,16 +12,16 @@ end
 
 def all_images()
 
-    result = db_query("SELECT * FROM images ORDER BY name;")
+    result = db_query("SELECT * FROM images ORDER BY date_time DESC NULLS LAST;")
 
 end
 
 
-def post_image(name, location, date, description, image_url,user_id,profile_url,user_name,user_email)
+def post_image(name, location, date, description, image_url,user_id,profile_url,user_name,user_email,date_time)
 
-    sql = "INSERT INTO images(name,location,date,description,image_url,user_id,profile_url,user_name,user_email) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9);"
+    sql = "INSERT INTO images(name,location,date,description,image_url,user_id,profile_url,user_name,user_email,date_time) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);"
 
-    db_query(sql, [name,location,date,description,image_url,user_id,profile_url,user_name,user_email])
+    db_query(sql, [name,location,date,description,image_url,user_id,profile_url,user_name,user_email,date_time])
 
 end
 
