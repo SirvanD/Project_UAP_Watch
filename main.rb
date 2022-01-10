@@ -15,8 +15,8 @@ require_relative 'controllers/user_controller.rb'
 
 
 enable :sessions
-
-planetary_client = NasaApi::Planetary.new(api_key: 'XjOIwythRDsPhMlGqVWqPbIb0IQFldVZBE9hTBtq')  #
+NASA_API_KEY = ENV['NASA_API_KEY']
+planetary_client = NasaApi::Planetary.new(api_key:"#{NASA_API_KEY}" )  #
 apod_today = planetary_client.apod()
 nasa= apod_today
 
@@ -194,7 +194,9 @@ post '/session' do
     redirect '/'
 
     else
-      erb :login
+      erb(:login, locals:{
+      nasa: apod_today
+      }) 
   end
 
 end
