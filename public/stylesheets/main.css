@@ -426,7 +426,7 @@
     font-family: 'Heebo', sans-serif;
     font-size: 12px;
     white-space: nowrap; 
-    width: 200px; 
+    width: 300px; 
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -448,12 +448,25 @@
   }
 
   .welcome_message{
+    font-weight: 600;
     font-size: 12px;
   }
 
   .container h3{
+    display: inline;
     text-align: center;
+    
   }
+  .logo_login{
+    
+    display: inline;
+    width: 90px;
+    height: 90px;
+  }
+  .container .inputs{
+    margin-top: 70px;
+  }
+  
 
 
 

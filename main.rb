@@ -16,7 +16,7 @@ require_relative 'controllers/user_controller.rb'
 
 enable :sessions
 
-planetary_client = NasaApi::Planetary.new(api_key: 'XjOIwythRDsPhMlGqVWqPbIb0IQFldVZBE9hTBtq')
+planetary_client = NasaApi::Planetary.new(api_key: 'XjOIwythRDsPhMlGqVWqPbIb0IQFldVZBE9hTBtq')  #
 apod_today = planetary_client.apod()
 nasa= apod_today
 
