@@ -51,9 +51,23 @@
           alt="<%= image['name'] %>"
         />
         <div class="post__footer">
-          <%# <span class="material-icons"> repeat </span>
+        
+        
+        <form action="/likes/<%= image['id'] %>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="likes" value="<%= image['likes'] %>">
+        
+        <button class="like_button"><span class="material-icons"> favorite_border </span>
+        <p class="like_number" > <%= image['likes'] %> </p>
+        </button>
+        </form>
+        
+          
+
+        <%# <span class="material-icons"> like </span>
+           
           <span class="material-icons"> favorite_border </span>
-          <span class="material-icons"> publish </span> %>
+          <span class="material-icons"> publish </span>  %>
         </div>
       </div>
     </div>

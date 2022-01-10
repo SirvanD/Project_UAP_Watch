@@ -212,8 +212,32 @@ delete '/session' do
 end
 
 
+put '/likes/:id' do
+
+  likes = params['likes'].to_i;
+   likes = likes +1
+
+  update_image_likes(
+    likes,
+    params['id']
+  )
+
+redirect '/likes'
+end
 
 
+get '/likes' do
+  users = all_users()
+  result = all_images_liked()
+erb(:index, locals: {
+  images: result,
+  users: users,
+  nasa: apod_today
+})
+end
+
+
+  
 
 
 

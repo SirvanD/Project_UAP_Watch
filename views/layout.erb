@@ -26,13 +26,23 @@
         <span class="material-icons"> home </span>
         <h2><a href="/">Home</a> </h2>
       </div>
-
+      
       <div class="sidebarOption">
       
         <span class="material-icons"> bookmark_border </span>
         
         <h2><a href="/images">My Posts</a> </h2>
       </div>
+
+
+      <div class="sidebarOption">
+      
+        <span class="material-icons"> thumb_up </span>
+        
+        <h2><a href="/likes">Most Liked</a> </h2>
+      </div>
+
+      
 
       <div class="sidebarOption">
         <span class="material-icons"> manage_accounts </span>
@@ -43,6 +53,8 @@
         <a href="/login">Profile</a></h2>
         <% end %>
       </div>
+
+      
 
       <button class="sidebar__tweet"><a href="/images/new">Post</a></button>
     </div>
@@ -106,7 +118,7 @@
         
         <div class="autoShowHide"><%= nasa.explanation %></div>             
         
-        <div><img class="nasa_image" src="<%= nasa.url %>" alt=""></div>
+        <div><img class="nasa_image" src="/stylesheets/images/jupiter.jpeg" alt=""></div>
 
         </div>          
           

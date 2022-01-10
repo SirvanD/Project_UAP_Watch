@@ -16,6 +16,14 @@ def all_images()
 
 end
 
+def all_images_liked()
+
+    result = db_query("SELECT * FROM images ORDER BY likes DESC NULLS LAST;")
+
+end
+
+
+
 
 def post_image(name, location, date, description, image_url,user_id,profile_url,user_name,user_email,date_time)
 
@@ -46,4 +54,9 @@ def update_image_profile(name,email,profile_url,user_id)
 sql = "UPDATE images SET user_name = $1, user_email = $2, profile_url = $3 WHERE user_id = $4;"
 db_query(sql,[name,email,profile_url,user_id])
 
+end
+
+def update_image_likes(likes,id)
+sql = "UPDATE images SET likes = $1 WHERE id = $2;"
+db_query(sql, [likes,id])
 end
