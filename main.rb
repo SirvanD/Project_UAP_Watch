@@ -20,6 +20,17 @@ planetary_client = NasaApi::Planetary.new(api_key:"#{NASA_API_KEY}" )  #
 apod_today = planetary_client.apod()
 nasa= apod_today
 
+# def nasa_media()
+
+#   if nasa.media_type == 'video'
+#     nasa.url = 
+#     return true
+#   else
+#     return false
+#   end
+
+# end
+
 get '/' do
   users = all_users()
   result = all_images()
