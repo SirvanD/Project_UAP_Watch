@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'pg'
-require 'pry'
+# require 'pry'
 require 'bcrypt'
 require 'cloudinary'
 require 'nasa_apod'
