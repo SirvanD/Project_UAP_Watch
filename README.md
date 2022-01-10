@@ -10,6 +10,6 @@
 - NASA_APOD image of the day has been used as a widget.
 - Material Icons has been used for styling.
 
-## ScreenShot
+### ScreenShot
 ![Screenshot](screenshot.png)
 
