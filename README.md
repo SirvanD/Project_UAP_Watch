@@ -13,5 +13,5 @@
 - Deployed on Heroku
 
 ### ScreenShot
-![Screenshot](screenshot.png)
+![Screenshot](screenshot_space.png)
 
