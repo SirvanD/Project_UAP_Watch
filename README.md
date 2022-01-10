@@ -7,7 +7,7 @@
 - Ruby Gems used: Sinatra,PG,BCrypt,nasa_api
 - Cloudinary API has been used for uploading local imgase. API Keys has been kep as an enviromental variable for security.
 - BCrypt API has been used to store and digest users password and authenticate users upon login.
-- NASA_APOD image of the day has been used as a widget.
+- NASA_APOD image of the day API has been used as a widget.
 - Material Icons has been used for styling.
 - Adobe Express for designing logos
 
