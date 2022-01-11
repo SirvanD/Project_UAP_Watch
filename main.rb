@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'pg'
-# require 'pry'
+require 'pry'
 require 'bcrypt'
 require 'cloudinary'
 require 'nasa_apod'
@@ -10,6 +10,7 @@ require 'nasa_api'
 
 require_relative 'models/sighting.rb'
 require_relative 'models/user.rb'
+require_relative 'models/likes.rb'
 require_relative 'controllers/image_controller.rb'
 require_relative 'controllers/user_controller.rb'
 
@@ -20,20 +21,21 @@ planetary_client = NasaApi::Planetary.new(api_key:"#{NASA_API_KEY}" )  #
 apod_today = planetary_client.apod()
 nasa= apod_today
 
-# def nasa_media()
 
-#   if nasa.media_type == 'video'
-#     nasa.url = 
-#     return true
-#   else
-#     return false
-#   end
+def user_liked(user_id)
 
-# end
+  sql = "SELECT post_id FROM likes where user_id = $1;"
+  result = db_query(sql, [user_id])
+  return result;
+
+end
+# binding.pry
+
 
 get '/' do
   users = all_users()
   result = all_images()
+  
   
   
   # binding.pry
@@ -223,18 +225,42 @@ delete '/session' do
 end
 
 
+
+
 put '/likes/:id' do
 
+redirect '/login' unless logged_in?
+  image_id = params['id']
   likes = params['likes'].to_i;
-   likes = likes +1
+  all_likes = all_likes().to_a
+             
+    post_like(current_user.id, image_id)
+    likes = likes +1
+    update_image_likes(likes,image_id)
+    
+    
 
-  update_image_likes(
-    likes,
-    params['id']
-  )
-
-redirect '/likes'
+redirect '/'
 end
+
+
+put '/dislike/:id' do
+
+  redirect '/login' unless logged_in?
+    image_id = params['id']
+    likes = params['likes'].to_i;
+    all_likes = all_likes().to_a
+               
+    post_dislike(current_user.id, image_id)
+    likes = likes - 1
+    update_image_likes(likes,image_id)     
+  
+  redirect '/'
+  end
+
+
+
+
 
 
 get '/likes' do

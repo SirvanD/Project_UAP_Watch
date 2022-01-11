@@ -118,7 +118,10 @@
         
         <div class="autoShowHide"><%= nasa.explanation %></div>             
         <% if nasa.media_type == 'video' %>
+        <div class="nasa_player">
         <iframe width="360" height="300" src="<%= nasa.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
         <% else %>        
         <div><img class="nasa_image" src="<%= nasa.url %>" alt=""></div>
         <% end %>

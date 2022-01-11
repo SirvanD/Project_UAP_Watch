@@ -56,7 +56,3 @@ db_query(sql,[name,email,profile_url,user_id])
 
 end
 
-def update_image_likes(likes,id)
-sql = "UPDATE images SET likes = $1 WHERE id = $2;"
-db_query(sql, [likes,id])
-end

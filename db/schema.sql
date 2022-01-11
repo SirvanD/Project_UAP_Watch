@@ -9,16 +9,44 @@ CREATE TABLE images (
     date TEXT,
     likes integer,
     dislikes integer,
-    user_id integer
+    user_id integer,
+    user_name TEXT,
+    user_email TEXT,
+    date_time timestamp,
+    profile_url TEXT
 )
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     name TEXT,
     email TEXT,
-    password_digest TEXT
+    password_digest TEXT,
+    profile_url TEXT
 
 )
+
+
+CREATE TABLE likes (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    post_id INTEGER
+);
+
+CREATE TABLE dislikes (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    post_id INTEGER
+);
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    content TEXT,
+    user_id INTEGER,
+    post_id INTEGER
+);
+
+
+
 
 INSERT INTO images (name, image_url,location,sighting_number,date) VALUES ('floating saucer','https://nypost.com/wp-content/uploads/sites/2/2017/09/170913-ufo-reward-1.jpg','Wollogong,New South Wales','4','August 24th 2019');
 

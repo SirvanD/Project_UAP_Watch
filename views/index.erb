@@ -52,22 +52,54 @@
         />
         <div class="post__footer">
         
+         <% if logged_in? %>
+          <% liked = false %>
+            <% user_liked(current_user.id).each do |like| %>
+         
+              <% if like['post_id'] == image['id'] %>
         
-        <form action="/likes/<%= image['id'] %>" method="post">
-        <input type="hidden" name="_method" value="put">
-        <input type="hidden" name="likes" value="<%= image['likes'] %>">
-        
-        <button class="like_button"><span class="material-icons"> favorite_border </span>
-        <p class="like_number" > <%= image['likes'] %> </p>
-        </button>
-        </form>
-        
-          
+                <% liked = true %>
 
-        <%# <span class="material-icons"> like </span>
-           
-          <span class="material-icons"> favorite_border </span>
-          <span class="material-icons"> publish </span>  %>
+              <% break %>              
+
+              <% end %>
+
+            <% end %>
+            <% if liked == true %>
+
+          <form action="/dislike/<%= image['id'] %>" method="post">
+          <input type="hidden" name="_method" value="put">
+          <input type="hidden" name="likes" value="<%= image['likes'] %>">        
+          <button class="like_button"><span class="material-icons"> favorite </span>
+          <p class="like_number" > <%= image['likes'] %> </p>
+          </button>
+          </form>
+
+            
+            <% else %>
+          <form action="/likes/<%= image['id'] %>" method="post">
+          <input type="hidden" name="_method" value="put">
+          <input type="hidden" name="likes" value="<%= image['likes'] %>">        
+          <button class="like_button"><span class="material-icons"> favorite_border </span>
+          <p class="like_number" > <%= image['likes'] %> </p>
+          </button>
+          </form>
+
+
+            
+          <% end %>
+
+          <% else %>
+          <form action="/dislike/<%= image['id'] %>" method="post">
+          <input type="hidden" name="_method" value="put">
+          <input type="hidden" name="likes" value="<%= image['likes'] %>">        
+          <button class="like_button"><span class="material-icons"> favorite_border </span>
+          <p class="like_number" > <%= image['likes'] %> </p>
+          </button>
+          </form>
+
+         <% end %>    
+        
         </div>
       </div>
     </div>
